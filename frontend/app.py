@@ -63,4 +63,6 @@ if upload_file is not None:
       prediction_dict = response.json()
       st.write(prediction_dict)
     else:
-      st.error('Error occured during prediction')
+      st.error('Error occured during prediction.')
+      st.write("Status code:", response.status_code)
+      st.write("Response text:", response.text)
