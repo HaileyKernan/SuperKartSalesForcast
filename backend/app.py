@@ -3,9 +3,14 @@ import pandas as pd
 from flask import Flask, request, jsonify
 import joblib
 
+from pathlib import Path
+
 sales_forcast_api = Flask('SuperKartSalesForcast')
 
-model = joblib.load('backend/super_kart_sales_forcast_v1_0.joblib')
+
+
+model_path = Path(__file__).with_name("super_kart_sales_forcast_v1_0.joblib")
+model = joblib.load(model_path)
 
 #Defines routes for home page
 @sales_forcast_api.get('/')
