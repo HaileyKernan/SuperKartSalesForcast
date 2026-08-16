@@ -58,11 +58,12 @@ upload_file = st.file_uploader('Upload a CSV file', type=['csv'])
 
 if upload_file is not None:
   if st.button('Predict', type='primary', key = 'batch'):
-    response = requests.post(f'{backend_url}/v1/batchprediction', files={'files':upload_file})
+    response = requests.post(
+    f'{backend_url}/v1/batchprediction',
+    files={'files': ('batch.csv', upload_file, 'text/csv')}
+)
     if response.status_code == 200:
       prediction_dict = response.json()
       st.write(prediction_dict)
     else:
       st.error('Error occured during prediction.')
-      st.write("Status code:", response.status_code)
-      st.write("Response text:", response.text)
