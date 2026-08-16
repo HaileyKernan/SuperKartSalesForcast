@@ -56,3 +56,9 @@ def predict_batch():
    return prediction_dict
 if __name__ == '__main__':
   sales_forcast_api.run(debug=True)
+
+  import traceback
+
+@sales_forcast_api.errorhandler(Exception)
+def handle_exception(e):
+    return jsonify({"error": str(e), "trace": traceback.format_exc()}), 500
