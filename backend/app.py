@@ -48,9 +48,9 @@ def predict_batch():
 
    #Getting the predictions
    batch_predictions = model.predict(input_files).tolist()
-
+   batch_predictions_rounded = [round(prediction, 2) for prediction in batch_predictions]
    product_ids = input_files['Product_Id'].tolist()
-   prediction_dict = dict(zip(product_ids, batch_predictions))
+   prediction_dict = dict(zip(product_ids, batch_predictions_rounded))
 
    #returnig predictions
    return prediction_dict
